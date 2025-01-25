@@ -1,0 +1,2 @@
+terraform-provider-google_v6.16.0_x5.exe filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
