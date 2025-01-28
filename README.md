@@ -1,3 +1,5 @@
+# ZoomcampDE
+
 Gerneral Zoomcamp DE Bootcamp repository
 
 SQL queries for the first week's homework
