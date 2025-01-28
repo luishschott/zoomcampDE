@@ -67,7 +67,7 @@ SQL queries for the first week's homework
 **QUESTION 4:**
 
     SELECT
-        CAST AS DATE lpep_pickup_datetime
+        lpep_pickup_datetime
         , trip_distance
     FROM public."2019_yellow_taxi_data"
     WHERE trip_distance = (
