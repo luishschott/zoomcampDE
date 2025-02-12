@@ -2,7 +2,7 @@
 
 Gerneral Zoomcamp DE Bootcamp repository
 
-SQL queries for the first week's homework
+SQL queries for the WEEK 1 homework
 ====================================
 
 **QUESTION 3:**
@@ -114,3 +114,48 @@ SQL queries for the first week's homework
         AND tdata.lpep_pickup_datetime < '2019-11-01'
     ORDER BY tdata.tip_amount DESC
     LIMIT 5
+
+
+SQL queries for the WEEK 3 homework
+====================================
+
+### create tables
+
+    CREATE OR REPLACE EXTERNAL TABLE `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_external`
+        OPTIONS(
+            format = 'PARQUET',
+            uris = ['gs://taxi_data_448017/yellow_tripdata_2024-*.parquet']
+        );
+
+    CREATE TABLE `terraform-demo-448017.zoomcamp.yellow_tripdata_2024` AS(
+        SELECT * FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_external`
+    );
+
+
+### Q2
+
+    SELECT COUNT(DISTINCT(PULocationID)) FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024`;
+    SELECT COUNT(DISTINCT(PULocationID)) FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_external`;
+
+### Q3
+
+    SELECT PULocationID FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024`;
+    SELECT PULocationID, DOLocationID FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024`;
+
+### Q4
+
+    SELECT COUNT(fare_amount) FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024` WHERE fare_amount = 0;
+
+### Q5
+
+    CREATE TABLE `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_partitioned`
+        PARTITION BY DATE(tpep_dropoff_datetime)
+        CLUSTER BY VendorID
+        AS(
+            SELECT * FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_external`
+        );
+
+### Q6
+
+    SELECT DISTINCT(VendorID) FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024` WHERE tpep_dropoff_datetime >= '2024-03-01' and tpep_dropoff_datetime <= '2024-03-15';
+    SELECT DISTINCT(VendorID) FROM `terraform-demo-448017.zoomcamp.yellow_tripdata_2024_partitioned` WHERE tpep_dropoff_datetime >= '2024-03-01' and tpep_dropoff_datetime <= '2024-03-15';
