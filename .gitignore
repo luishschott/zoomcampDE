@@ -1,3 +1,5 @@
 1_docker_terraform/2_docker_sql/pgdamin/
 1_docker_terraform/2_docker_sql/ny_taxi_postgres_data
 1_docker_terraform/2_docker_sql/.ipynb_checkpoints/
+*yellow_trip_data*.parquet
+my_first_dlt_pipeline.duckdb
